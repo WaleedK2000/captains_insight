@@ -72,6 +72,8 @@ class _NewTournamentState extends State<NewTournament> {
       );
 
   Widget _buildTournamentButton() => ElevatedButton(
+        //Go to add team page
+
         child: const Text('Add Tournament'),
         onPressed: () {
           if (__tournamentName.isEmpty) {
