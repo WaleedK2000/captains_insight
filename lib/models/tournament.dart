@@ -22,6 +22,7 @@ class Tournament {
   }
 
   Map<String, dynamic> toJson() {
-    return {'name': this.name, 'teams': this.teams};
+    //return {'name': this.name, 'teams': this.teams};
+    return {'name': name};
   }
 }
