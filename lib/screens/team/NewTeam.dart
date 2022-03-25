@@ -1,16 +1,25 @@
+import 'package:captains_insight/models/tournament.dart';
+import 'package:captains_insight/services/database.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class NewTeam extends StatefulWidget {
-  const NewTeam({Key? key, required this.data}) : super(key: key);
+import '../../models/Team.dart';
 
-  final DatabaseReference data;
+class NewTeam extends StatefulWidget {
+  const NewTeam({Key? key, required this.tournament}) : super(key: key);
+
+  final Tournament tournament;
 
   @override
-  State<NewTeam> createState() => _NewTeamState();
+  State<NewTeam> createState() => _NewTeamState(tournament);
 }
 
 class _NewTeamState extends State<NewTeam> {
+  final Tournament tournament;
+  _NewTeamState(this.tournament);
+
+  String _teamName = '';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +36,8 @@ class _NewTeamState extends State<NewTeam> {
             child: Column(
               children: <Widget>[
                 _buildTeamName(),
-                //_buildTeamButton(),
+                _buildTeamAddButton(),
+                _buildDoneButton(),
               ],
             ),
           ),
@@ -37,15 +47,35 @@ class _NewTeamState extends State<NewTeam> {
   }
 
   Widget _buildTeamName() => TextFormField(
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Team Name',
-          hintText: 'Enter Team Name',
-        ),
-        validator: (Value) {
-          if (Value!.isEmpty) {
-            return 'Please enter a team name';
-          }
-        },
-      );
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: 'Team Name',
+        hintText: 'Enter Team Name',
+      ),
+      validator: (Value) {
+        if (Value!.isEmpty) {
+          return 'Please enter a team name';
+        }
+      },
+      onChanged: (value) {
+        setState(() {
+          _teamName = value;
+        });
+      });
+
+  Widget _buildTeamAddButton() => ElevatedButton(
+      child: const Text('Add Team'),
+      onPressed: () {
+        DatabaseReference dbRef = Database().saveTeam(Team(_teamName));
+
+        tournament.addTeam(dbRef.key);
+      });
+
+  Widget _buildDoneButton() => ElevatedButton(
+      child: const Text('Done'),
+      onPressed: () {
+        Database().updateTournamentTeams(tournament);
+        // Navigator.pop(context);
+        // Navigator.pop(context);
+      });
 }

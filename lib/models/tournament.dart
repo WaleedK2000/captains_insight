@@ -13,16 +13,31 @@ class Tournament {
     this._id = id;
   }
 
-  void addTeam(Team) {
-    teams.add(Team);
+  DatabaseReference getId() {
+    return this._id;
   }
 
-  void removeTeam(Team) {
-    teams.remove(Team);
+  void addTeam(String? ref) {
+    teams.add(ref);
+  }
+
+  void removeTeam(String ref) {
+    teams.remove(ref);
   }
 
   Map<String, dynamic> toJson() {
-    //return {'name': this.name, 'teams': this.teams};
+    // if (teams.isEmpty) {
     return {'name': name};
+    // } else {
+    //   return {'name': name, 'teams': teams};
+    //}
+  }
+
+  Map<String, dynamic> toJson2(DatabaseReference ref) {
+    return {'name': name, 'teams': teams};
+  }
+
+  Map<String, dynamic> toJson3() {
+    return {'teams': teams.toString()};
   }
 }

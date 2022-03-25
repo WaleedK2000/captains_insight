@@ -2,6 +2,7 @@ import 'package:captains_insight/models/tournament.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/database.dart';
+import '../team/NewTeam.dart';
 
 class NewTournament extends StatefulWidget {
   const NewTournament({Key? key}) : super(key: key);
@@ -82,7 +83,11 @@ class _NewTournamentState extends State<NewTournament> {
           Tournament t = Tournament(__tournamentName);
           t.setId(Database().saveTournament(t));
 
-          Navigator.pop(context, __tournamentName);
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => NewTeam(tournament: t)),
+          );
+
+          //Navigator.pop(context, __tournamentName);
         },
       );
 }

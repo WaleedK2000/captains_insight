@@ -11,6 +11,24 @@ class Database {
     return id;
   }
 
+  void updateTournamentTeams(Tournament tournament) {
+    DatabaseReference ref = tournament.getId();
+    print('printing teams');
+
+    print(tournament.toJson2(ref));
+    print(tournament.getId());
+
+    String path = 'tournaments/${tournament.getId().key}/teams';
+
+    print(path);
+
+    final _databaseReference = FirebaseDatabase.instance;
+    var id = _databaseReference.reference().child(path).push();
+    id.set(tournament.toJson3());
+    print('printing teams');
+    //return ref;
+  }
+
   DatabaseReference saveTeam(Team team) {
     final _databaseReference = FirebaseDatabase.instance;
     var id = _databaseReference.reference().child('teams/').push();
