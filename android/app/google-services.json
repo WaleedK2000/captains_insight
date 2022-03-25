@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "311384812148",
+    "project_id": "captainsinsight",
+    "storage_bucket": "captainsinsight.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311384812148:android:0bc708edfef741a2027f21",
+        "android_client_info": {
+          "package_name": "com.swhSol.captains_insight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311384812148-tqkiom0eo6koo1f3j48pq4v8gdnn4jfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDozNAJdbdDIiJvb4c4udwP-IcqCpB-i-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311384812148-tqkiom0eo6koo1f3j48pq4v8gdnn4jfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
