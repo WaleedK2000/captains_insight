@@ -1,6 +1,5 @@
 import 'package:captains_insight/models/tournament.dart';
 import 'package:captains_insight/services/database.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/Team.dart';
