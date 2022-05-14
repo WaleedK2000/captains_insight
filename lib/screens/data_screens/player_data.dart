@@ -174,7 +174,7 @@ class PlayerDataScreen extends StatelessWidget {
               _buildCell('4s'),
               _buildCell("6s"),
               _buildCell("Ct"),
-              _buildCell("St"),
+              _buildCell("S/R"),
             ],
           ),
           TableRow(
@@ -182,7 +182,9 @@ class PlayerDataScreen extends StatelessWidget {
               _buildCell(data['4s'].toString()),
               _buildCell(data['6s'].toString()),
               _buildCell(data['catches'].toString()),
-              _buildCell(data['stumpings'].toString()),
+              _buildCell((data['runs'] / data['ballsfaced'] * 100)
+                  .toDouble()
+                  .toStringAsFixed(2)),
             ],
           ),
         ],

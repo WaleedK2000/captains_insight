@@ -70,19 +70,16 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
   Widget build(BuildContext context) {
     return Container(
         child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Players'),
-            ),
             body: Column(children: [
-              const SizedBox(height: 10),
-              _buildSearchBar(),
-              const SizedBox(height: 10),
-              _buildCountrySortDropDown(),
-              const SizedBox(height: 10),
-              Container(
-                child: Column(children: _buildPlayerCards()),
-              )
-            ])));
+      const SizedBox(height: 25),
+      _buildSearchBar(),
+      const SizedBox(height: 10),
+      _buildCountrySortDropDown(),
+      const SizedBox(height: 10),
+      Container(
+        child: Column(children: _buildPlayerCards()),
+      )
+    ])));
   }
 
   _buildSearchBar() => TextField(
