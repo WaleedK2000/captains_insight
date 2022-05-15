@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data_screens/player_list.dart';
 import '../new_tournament/tournament_add.dart';
 
 class Home extends StatelessWidget {
@@ -18,16 +19,26 @@ class Home extends StatelessWidget {
                 child: Form(
                     child: Column(
               children: <Widget>[
-                _buildNewTornamentButton(context),
+                _buildNewTournamentButton(context),
+                _buildViewPlayers(context),
               ],
             )))));
   }
 
-  Widget _buildNewTornamentButton(BuildContext context) => ElevatedButton(
+  Widget _buildNewTournamentButton(BuildContext context) => ElevatedButton(
         child: const Text('Add Tournament'),
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const NewTournament()),
+          );
+        },
+      );
+
+  Widget _buildViewPlayers(BuildContext context) => ElevatedButton(
+        child: const Text('Player Stats'),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const PlayerListScreen()),
           );
         },
       );

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import '../../models/Team.dart';
 
 class PlayerDataScreen extends StatelessWidget {
+  final Map<String, dynamic> playerDat;
+  PlayerDataScreen({Key? key, required this.playerDat}) : super(key: key);
+
   static const rowSpacer = TableRow(children: [
     SizedBox(
       height: 15,
@@ -50,7 +53,7 @@ class PlayerDataScreen extends StatelessWidget {
     'stumpings': 0,
   };
 
-  Map<String, dynamic> test_det = {
+  final Map<String, dynamic> _test_det = {
     'matches': 40,
     'innings': 71,
     'notouts': 9,
@@ -278,7 +281,7 @@ class PlayerDataScreen extends StatelessWidget {
                   children: [
                     _buildTable(t20i_det),
                     _buildTable(odi_det),
-                    _buildTable(test_det),
+                    _buildTable(_test_det),
                   ],
                 ),
               ),

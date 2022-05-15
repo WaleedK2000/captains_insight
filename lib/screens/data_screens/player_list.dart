@@ -1,3 +1,4 @@
+import 'package:captains_insight/screens/data_screens/player_data.dart';
 import 'package:flutter/material.dart';
 
 class PlayerListScreen extends StatefulWidget {
@@ -50,20 +51,32 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
   }
 
   _buildPlayerCards() {
-    var players_list = players.keys.toList();
+    var playersList = players.keys.toList();
     var columns = <Widget>[];
-    for (var i = 0; i < (players_list.length); i += 2) {
+    for (var i = 0; i < (playersList.length); i += 2) {
       columns.add(
         Row(
           children: [
-            _buildCard2(players_list[i]),
-            _buildCard2(players_list[i + 1]),
+            InkWell(
+                child: _buildCard2(playersList[i]),
+                onTap: () => _switchToPlayerDataScreen(
+                    context, players[playersList[i]])),
+            InkWell(
+                child: _buildCard2(playersList[i + 1]),
+                onTap: () => _switchToPlayerDataScreen(
+                    context, players[playersList[i + 1]]))
           ],
         ),
       );
     }
 
     return columns;
+  }
+
+  _switchToPlayerDataScreen(BuildContext context, dat) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => PlayerDataScreen(playerDat: dat)),
+    );
   }
 
   @override
