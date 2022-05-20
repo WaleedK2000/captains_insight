@@ -11,9 +11,9 @@ class PlayerListScreen extends StatefulWidget {
 class _PlayerListScreenState extends State<PlayerListScreen> {
   late TextEditingController textController;
 
-  var init_dropdown = "Pakistan";
+  var initDropdown = "Pakistan";
 
-  var countries_list = [
+  var countriesList = [
     'Afghanistan',
     'Australia',
     'England',
@@ -96,16 +96,16 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
       );
 
   _buildCountrySortDropDown() => DropdownButton(
-        items: countries_list.map((String val) {
+        items: countriesList.map((String val) {
           return DropdownMenuItem(
             value: val,
             child: Text(val),
           );
         }).toList(),
-        value: init_dropdown,
+        value: initDropdown,
         onChanged: (String? newVal) {
           setState(() {
-            init_dropdown = newVal!;
+            initDropdown = newVal!;
           });
         },
       );
