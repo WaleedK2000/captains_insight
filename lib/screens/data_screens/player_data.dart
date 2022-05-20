@@ -1,11 +1,17 @@
 import 'package:captains_insight/models/tournament.dart';
+import 'package:captains_insight/screens/data_screens/AverageBowlingLength.dart';
+import 'package:captains_insight/screens/data_screens/AveragePaceDat.dart';
+import 'package:captains_insight/screens/data_screens/StrongZoneScreen.dart';
 import 'package:captains_insight/services/database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/Team.dart';
 
 class PlayerDataScreen extends StatelessWidget {
   final Map<String, dynamic> playerDat;
+  late final BuildContext context;
+
   PlayerDataScreen({Key? key, required this.playerDat}) : super(key: key);
 
   static const rowSpacer = TableRow(children: [
@@ -23,7 +29,7 @@ class PlayerDataScreen extends StatelessWidget {
     ),
   ]);
 
-  Map<String, dynamic> t20i_det = {
+  final Map<String, dynamic> t20i_det = {
     'matches': 74,
     'innings': 69,
     'notouts': 10,
@@ -38,7 +44,7 @@ class PlayerDataScreen extends StatelessWidget {
     'stumpings': 0,
   };
 
-  Map<String, dynamic> odi_det = {
+  final Map<String, dynamic> odi_det = {
     'matches': 86,
     'innings': 84,
     'notouts': 12,
@@ -76,8 +82,8 @@ class PlayerDataScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
+    this.context = context;
+    return Scaffold(
         //backgroundColor: Colors.grey,
         appBar: AppBar(
           backgroundColor: Colors.brown[400],
@@ -85,21 +91,16 @@ class PlayerDataScreen extends StatelessWidget {
           elevation: 0.0,
         ),
         body: SizedBox.expand(
-          child: Container(
-            margin: const EdgeInsets.all(24),
-            child: Column(
-              children: <Widget>[
-                _buildTop(),
-                const SizedBox(height: 25),
-                // _buildTable(),
-                _buildSomething(context),
-                // _buildTeamAddButton(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+            child: Container(
+                margin: const EdgeInsets.all(24),
+                child: Column(children: <Widget>[
+                  _buildTop(),
+                  const SizedBox(height: 25),
+                  // _buildTable(),
+                  _buildOtherTab(context),
+
+                  // _buildTeamAddButton(),
+                ]))));
   }
 
   Widget _buildPicture() => Image.asset(
@@ -204,6 +205,31 @@ class PlayerDataScreen extends StatelessWidget {
   Widget _buildTeamAddButton() => ElevatedButton(
       child: const Text('Add Team'), onPressed: () => print('pressed'));
 
+  Widget _buildViewStrongZoneButton() => ElevatedButton(
+      child: const Text('Strong Zones'),
+      onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const StrongZoneScreen()),
+          ));
+
+  Widget _buildViewPaceButton() => ElevatedButton(
+      child: const Text('Average Pace'),
+      onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const AveragePaceDat()),
+          ));
+
+  Widget _buildAverageBowlingLengthButton() => ElevatedButton(
+        child: const Text('Average Bowling Length'),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const AverageBowlingLength()),
+        ),
+      );
+
+  Widget _buildAverageBowlingLenght() => ElevatedButton(
+      child: const Text('Average Bowling Length'),
+      onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const StrongZoneScreen()),
+          ));
+
   Widget _buildDoneButton() => ElevatedButton(
       child: const Text('Done'),
       onPressed: () {
@@ -251,7 +277,57 @@ class PlayerDataScreen extends StatelessWidget {
         ],
       );
 
-  _buildSomething(BuildContext context) => Expanded(
+  _buildOtherTab(BuildContext context) => Expanded(
+        child: DefaultTabController(
+          length: 2,
+          initialIndex: 0,
+          child: Column(
+            children: [
+              TabBar(
+                  labelColor: Colors.black,
+                  labelStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  indicatorColor: Theme.of(context).primaryColor,
+                  tabs: const [
+                    Tab(
+                      text: 'Batting',
+                    ),
+                    Tab(
+                      text: 'Bowling',
+                    )
+                  ]),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    Column(
+                      children: [
+                        buildBattingStatTable(context),
+                        _buildViewStrongZoneButton()
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        _buildBowlingStatTable(context),
+                        Text('Bowling Data by Phase'),
+                        Row(children: [
+                          _buildViewPaceButton(),
+                          _buildAverageBowlingLengthButton()
+                        ]),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+  _buildBowlingStatTable(BuildContext context) => Text('data not found');
+
+  buildBattingStatTable(BuildContext context) => Expanded(
         child: DefaultTabController(
           length: 3,
           initialIndex: 0,

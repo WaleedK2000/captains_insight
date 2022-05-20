@@ -11,8 +11,8 @@ class Home extends StatelessWidget {
     return Container(
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
-              title: const Text('Add Tournament'),
+              backgroundColor: Colors.amber[400],
+              title: const Text('Home Screen'),
               elevation: 0.0,
             ),
             body: Container(

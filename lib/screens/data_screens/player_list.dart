@@ -57,14 +57,8 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
       columns.add(
         Row(
           children: [
-            InkWell(
-                child: _buildCard2(playersList[i]),
-                onTap: () => _switchToPlayerDataScreen(
-                    context, players[playersList[i]])),
-            InkWell(
-                child: _buildCard2(playersList[i + 1]),
-                onTap: () => _switchToPlayerDataScreen(
-                    context, players[playersList[i + 1]]))
+            _buildCard2(playersList[i], players[playersList[i]]),
+            _buildCard2(playersList[i + 1], players[playersList[i]]),
           ],
         ),
       );
@@ -81,9 +75,8 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Scaffold(
-            body: Column(children: [
+    return Scaffold(
+        body: Column(children: [
       const SizedBox(height: 25),
       _buildSearchBar(),
       const SizedBox(height: 10),
@@ -92,7 +85,7 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
       Container(
         child: Column(children: _buildPlayerCards()),
       )
-    ])));
+    ]));
   }
 
   _buildSearchBar() => TextField(
@@ -117,24 +110,25 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
         },
       );
 
-  _buildCard2(String player) => Container(
-        margin: const EdgeInsets.all(5.0),
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black,
-            width: 3,
-            style: BorderStyle.solid,
-          ),
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 4,
-              color: Color.fromARGB(199, 255, 255, 255),
-              offset: Offset(0, 2),
-            )
-          ],
-          borderRadius: const BorderRadius.all(Radius.circular(22)),
+  _buildCard2(String player, playerDat) => Container(
+      margin: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 3,
+          style: BorderStyle.solid,
         ),
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 4,
+            color: Color.fromARGB(199, 255, 255, 255),
+            offset: Offset(0, 2),
+          )
+        ],
+        borderRadius: const BorderRadius.all(Radius.circular(22)),
+      ),
+      child: InkWell(
         child: Column(children: [
           Row(
             children: [
@@ -162,7 +156,8 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
             )
           ])
         ]),
-      );
+        onTap: () => _switchToPlayerDataScreen(context, playerDat),
+      ));
 
   Widget _buildPicture2(String filename) => Container(
       child: Image.asset(

@@ -15,6 +15,11 @@ class NewTeam extends StatefulWidget {
 }
 
 class _NewTeamState extends State<NewTeam> {
+  static final RegExp nameRegExp = RegExp('[a-zA-Z]');
+  static final RegExp numberRegExp = RegExp(r'\d');
+
+  final _formKey = GlobalKey<FormState>();
+
   final Tournament tournament;
   _NewTeamState(this.tournament);
 
@@ -23,6 +28,7 @@ class _NewTeamState extends State<NewTeam> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: _formKey,
       child: Scaffold(
         backgroundColor: Colors.grey,
         appBar: AppBar(
@@ -55,7 +61,10 @@ class _NewTeamState extends State<NewTeam> {
       validator: (Value) {
         if (Value!.isEmpty) {
           return 'Please enter a team name';
+        } else if (Value.contains(nameRegExp)) {
+          return 'Name can only contain alphabets';
         }
+        return null;
       },
       onChanged: (value) {
         setState(() {
@@ -74,7 +83,12 @@ class _NewTeamState extends State<NewTeam> {
   Widget _buildDoneButton() => ElevatedButton(
       child: const Text('Done'),
       onPressed: () {
-        Database().updateTournamentTeams(tournament);
+        print('bigt');
+        if (_formKey.currentState!.validate()) {
+          Database().updateTournamentTeams(tournament);
+        } else {
+          print('OK?');
+        }
         // Navigator.pop(context);
         // Navigator.pop(context);
       });
