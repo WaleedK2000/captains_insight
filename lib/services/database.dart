@@ -36,6 +36,38 @@ class Database {
     return id;
   }
 
+  Future getPlayers() async {
+    //DatabaseReference ref = tournament.getId();
+    //print('printing teams');
+
+    //print(tournament.toJson2(ref));
+    //print(tournament.getId());
+
+    String path = 'player_dat/';
+
+    final _databaseReference = FirebaseDatabase.instance.ref();
+    final snapshot = await _databaseReference.child(path).get();
+
+    if (snapshot.exists) {
+      return snapshot.value;
+    }
+
+    return "Error Occurred";
+  }
+
+  Future getTeams() async {
+    String path = 'teams/';
+
+    final _databaseReference = FirebaseDatabase.instance.ref();
+    final snapshot = await _databaseReference.child(path).get();
+
+    if (snapshot.exists) {
+      return snapshot.value;
+    }
+
+    return "Error Occurred";
+  }
+
   //Add tournament
 
 }

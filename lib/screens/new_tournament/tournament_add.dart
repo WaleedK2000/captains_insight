@@ -12,6 +12,10 @@ class NewTournament extends StatefulWidget {
 }
 
 class _NewTournamentState extends State<NewTournament> {
+  static final RegExp nameRegExp = RegExp('[a-zA-Z]');
+  static final RegExp numberRegExp = RegExp(r'\d');
+  final _formKey = GlobalKey<FormState>();
+
   String __tournamentName = '';
   int __tournamentSize = 0;
   @override
@@ -26,13 +30,16 @@ class _NewTournamentState extends State<NewTournament> {
         body: Container(
             margin: EdgeInsets.all(24),
             child: Form(
+                key: _formKey,
                 child: Column(
-              children: <Widget>[
-                _buildtournamentName(),
-                _buildTournamentNumber(),
-                _buildTournamentButton(),
-              ],
-            ))));
+                  children: <Widget>[
+                    _buildtournamentName(),
+                    const SizedBox(height: 25),
+                    _buildTournamentNumber(),
+                    const SizedBox(height: 25),
+                    _buildTournamentButton(),
+                  ],
+                ))));
   }
 
   Widget _buildtournamentName() => TextFormField(
@@ -41,10 +48,13 @@ class _NewTournamentState extends State<NewTournament> {
           labelText: 'Tournament Name',
           hintText: 'Enter Tournament Name',
         ),
-        validator: (Value) {
-          if (Value!.isEmpty) {
+        validator: (value) {
+          if (value!.isEmpty) {
             return 'Please enter a tournament name';
+          } else if (value.contains(numberRegExp)) {
+            return 'Name can only contain alphabets';
           }
+          return null;
         },
         onChanged: (value) {
           setState(() {
@@ -63,6 +73,16 @@ class _NewTournamentState extends State<NewTournament> {
           if (value!.isEmpty) {
             return 'Please enter a number';
           }
+
+          if (value.contains(nameRegExp)) {
+            return 'Enter a valid number of teams';
+          }
+
+          int valueInt = int.parse(value);
+          if (valueInt > 25 || valueInt < 2) {
+            return 'Enter a number between 2 and 25';
+          }
+          return null;
         },
         onChanged: (value) {
           setState(() {
@@ -76,18 +96,18 @@ class _NewTournamentState extends State<NewTournament> {
         //Go to add team page
 
         child: const Text('Add Tournament'),
+
         onPressed: () {
-          if (__tournamentName.isEmpty) {
-            return;
+          if (_formKey.currentState!.validate()) {
+            Tournament t = Tournament(__tournamentName);
+            t.setId(Database().saveTournament(t));
+
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => NewTeam(tournament: t)),
+            );
+
+            //Navigator.pop(context, __tournamentName);
           }
-          Tournament t = Tournament(__tournamentName);
-          t.setId(Database().saveTournament(t));
-
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => NewTeam(tournament: t)),
-          );
-
-          //Navigator.pop(context, __tournamentName);
         },
       );
 }
