@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:firebase_database/firebase_database.dart';
 
 class Player {
@@ -5,6 +7,6 @@ class Player {
   String name = '';
 
   Map<String, dynamic> toJson() {
-    return {'name': this.name};
+    return {'name': name};
   }
 }
