@@ -11,7 +11,7 @@ class _AverageBowlingLengthState extends State<AverageBowlingLength> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Average Bowling Length By Phase')),
+        appBar: AppBar(title: const Text('Average Bowling Length By Phase')),
         body: _buildTable());
   }
 
