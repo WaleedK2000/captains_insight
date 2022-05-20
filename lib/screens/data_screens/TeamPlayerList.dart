@@ -1,6 +1,8 @@
 import 'package:captains_insight/screens/data_screens/player_data.dart';
 import 'package:flutter/material.dart';
 
+import 'AverageTeamTotal.dart';
+
 class TeamPlayerList extends StatefulWidget {
   const TeamPlayerList({Key? key, required this.team}) : super(key: key);
 
@@ -77,10 +79,25 @@ class _TeamPlayerListState extends State<TeamPlayerList> {
           const SizedBox(height: 10),
           const SizedBox(height: 10),
           Container(
-            child: Column(children: _buildPlayerCards()),
-          )
+            child: Column(
+              children: _buildPlayerCards(),
+            ),
+          ),
+          _buildAverageTeamTotal(),
         ]));
   }
+
+  Widget _buildAverageTeamTotal() => ElevatedButton(
+      child: const Text('Average Team Totals'),
+      onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const AverageTeamTotal()),
+          ));
+
+  Widget _buildAverageFieldPlacements() => ElevatedButton(
+      child: const Text('Field Placements'),
+      onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const AverageTeamTotal()),
+          ));
 
   _buildCard2(String player, playerDat) => Container(
       margin: const EdgeInsets.all(5.0),

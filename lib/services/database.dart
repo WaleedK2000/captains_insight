@@ -55,6 +55,19 @@ class Database {
     return "Error Occurred";
   }
 
+  Future getTeams() async {
+    String path = 'teams/';
+
+    final _databaseReference = FirebaseDatabase.instance.ref();
+    final snapshot = await _databaseReference.child(path).get();
+
+    if (snapshot.exists) {
+      return snapshot.value;
+    }
+
+    return "Error Occurred";
+  }
+
   //Add tournament
 
 }
