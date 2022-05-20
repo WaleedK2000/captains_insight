@@ -1,8 +1,4 @@
-import 'package:captains_insight/screens/data_screens/cc.dart';
-import 'package:captains_insight/screens/data_screens/player_data.dart';
-import 'package:captains_insight/screens/data_screens/player_list.dart';
 import 'package:captains_insight/screens/home/home.dart';
-import 'package:captains_insight/screens/tournaments/view_tournaments.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
