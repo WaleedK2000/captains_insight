@@ -68,6 +68,44 @@ class Database {
     return "Error Occurred";
   }
 
+  getHomeMenuItems() {
+    return {
+      'Player Stats': {'image': 'stat.png'},
+      'Teams': {'image': 'team.png'},
+      'Ground Stats': {'image': 'nsk.png'},
+      'Tournaments': {'image': 'trophy.png'},
+    };
+  }
+
+  getCountryList() {
+    return ['Afghanistan', 'Australia', 'England', 'Pakistan', 'India'];
+  }
+
+  getPlayerData() {
+    return {
+      "Babar Azam": {
+        "type": "Top Order Batter",
+        "country": "Pakistan",
+        "picture": "babar_azam"
+      },
+      "Mohammad Rizwan": {
+        "type": "Wicketkeeper Batter",
+        "country": "Pakistan",
+        "picture": "mohammad_rizwan"
+      },
+      "Shan Masood": {
+        "type": "Opening Batter",
+        "country": "Pakistan",
+        "picture": "shan_masood"
+      },
+      "Imam-ul-Haq": {
+        "type": "Top Order Batter",
+        "country": "Pakistan",
+        "picture": "imam_ul_haq"
+      },
+    };
+  }
+
   //Add tournament
 
 }
