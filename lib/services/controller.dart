@@ -1,11 +1,14 @@
+
 import 'package:captains_insight/interfaces/Player_List_Interface.dart';
 import 'package:captains_insight/interfaces/dropDownInterface.dart';
+
 import 'package:captains_insight/interfaces/home_Interface.dart';
 import 'package:captains_insight/screens/data_screens/player_list.dart';
 import 'package:captains_insight/screens/new_tournament/tournament_add.dart';
 import 'package:captains_insight/screens/team/TeamsListScreen.dart';
 import 'package:captains_insight/services/database.dart';
 import 'package:flutter/material.dart';
+
 
 class Controller
     implements home_interface, Player_List_interface, DropDownInterface {
@@ -14,6 +17,7 @@ class Controller
 
   Controller._internal();
 
+
   factory Controller() {
     return _controller;
   }
@@ -21,6 +25,7 @@ class Controller
   getCountryList() {
     return db.getCountryList();
   }
+
 
   //BuildContext get context => BuildContext();
 
@@ -50,6 +55,7 @@ class Controller
     }
   }
 
+
   @override
   getPlayers() {
     return db.getPlayerList();
@@ -59,4 +65,5 @@ class Controller
   set db(Database _db) {
     _db = Database();
   }
+
 }

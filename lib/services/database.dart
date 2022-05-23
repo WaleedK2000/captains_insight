@@ -77,8 +77,10 @@ class Database {
     };
   }
 
+
   List<String> getCountryList() {
     return ['Pakistan', 'Afghanistan', 'Australia', 'England', 'India'];
+
   }
 
   getPlayerData() {
@@ -106,6 +108,7 @@ class Database {
     };
   }
 
+
   getPlayerList() {
     return {
       "Babar Azam": {
@@ -130,6 +133,7 @@ class Database {
       },
     };
   }
+
 
   //Add tournament
 

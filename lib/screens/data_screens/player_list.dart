@@ -14,12 +14,14 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
   late TextEditingController textController;
   Player_List_interface controller = Controller();
 
+
   _PlayerListScreenState() {
     Player_List_interface controller = Controller();
     countriesList = controller.getCountryList();
     initDropdown = countriesList[0];
     players = controller.getPlayers();
   }
+
 
   late String initDropdown;
   late final List<String> countriesList;
