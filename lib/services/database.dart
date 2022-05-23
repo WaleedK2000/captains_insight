@@ -77,11 +77,36 @@ class Database {
     };
   }
 
-  getCountryList() {
-    return ['Afghanistan', 'Australia', 'England', 'Pakistan', 'India'];
+  List<String> getCountryList() {
+    return ['Pakistan', 'Afghanistan', 'Australia', 'England', 'India'];
   }
 
   getPlayerData() {
+    return {
+      "Babar Azam": {
+        "type": "Top Order Batter",
+        "country": "Pakistan",
+        "picture": "babar_azam"
+      },
+      "Mohammad Rizwan": {
+        "type": "Wicketkeeper Batter",
+        "country": "Pakistan",
+        "picture": "mohammad_rizwan"
+      },
+      "Shan Masood": {
+        "type": "Opening Batter",
+        "country": "Pakistan",
+        "picture": "shan_masood"
+      },
+      "Imam-ul-Haq": {
+        "type": "Top Order Batter",
+        "country": "Pakistan",
+        "picture": "imam_ul_haq"
+      },
+    };
+  }
+
+  getPlayerList() {
     return {
       "Babar Azam": {
         "type": "Top Order Batter",
