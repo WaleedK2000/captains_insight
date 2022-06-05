@@ -1,4 +1,6 @@
+import 'package:captains_insight/interfaces/Player_List_Interface.dart';
 import 'package:captains_insight/screens/data_screens/player_data.dart';
+import 'package:captains_insight/services/controller.dart';
 import 'package:flutter/material.dart';
 
 class PlayerListScreen extends StatefulWidget {
@@ -10,39 +12,20 @@ class PlayerListScreen extends StatefulWidget {
 
 class _PlayerListScreenState extends State<PlayerListScreen> {
   late TextEditingController textController;
+  Player_List_interface controller = Controller();
 
-  var initDropdown = "Pakistan";
 
-  var countriesList = [
-    'Afghanistan',
-    'Australia',
-    'England',
-    'Pakistan',
-    'India'
-  ];
+  _PlayerListScreenState() {
+    Player_List_interface controller = Controller();
+    countriesList = controller.getCountryList();
+    initDropdown = countriesList[0];
+    players = controller.getPlayers();
+  }
 
-  var players = {
-    "Babar Azam": {
-      "type": "Top Order Batter",
-      "country": "Pakistan",
-      "picture": "babar_azam"
-    },
-    "Mohammad Rizwan": {
-      "type": "Wicketkeeper Batter",
-      "country": "Pakistan",
-      "picture": "mohammad_rizwan"
-    },
-    "Shan Masood": {
-      "type": "Opening Batter",
-      "country": "Pakistan",
-      "picture": "shan_masood"
-    },
-    "Imam-ul-Haq": {
-      "type": "Top Order Batter",
-      "country": "Pakistan",
-      "picture": "imam_ul_haq"
-    },
-  };
+
+  late String initDropdown;
+  late final List<String> countriesList;
+  late final players;
 
   @override
   void initState() {
