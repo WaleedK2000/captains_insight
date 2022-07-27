@@ -4,7 +4,7 @@ Goal of this project is to create a basic cricket application which allows users
 
 ## Technologies Used
 
-Flutter
-Firebase
+  Flutter <br/>
+  Firebase
 
 
